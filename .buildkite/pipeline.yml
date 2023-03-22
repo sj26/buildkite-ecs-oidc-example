@@ -1,0 +1,17 @@
+env:
+  AWS_ACCOUNT_ID: "253213882263"
+  AWS_REGION: "us-east-1"
+  ECR_REPOSITORY: "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/buildkite-ecs-oidc-example"
+  CONTAINER_TAG: "${ECR_REPOSITORY}:${BUILDKITE_BUILD_NUMBER}"
+
+steps:
+  - label: ":docker:"
+    command: |
+      docker build -t "${CONTAINER_TAG}" --platform=linux/amd64 .
+      docker push "${CONTAINER_TAG}"
+    plugins:
+      - ecr#v2.7.0:
+          login: true
+          account_ids: "${AWS_ACCOUNT_ID}"
+          region: "${AWS_REGION}"
+
