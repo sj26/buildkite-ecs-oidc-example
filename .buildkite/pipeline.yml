@@ -25,6 +25,7 @@ steps:
           role-arn: arn:aws:iam::253213882263:role/deploy-ecs
 
       - ecs-deploy:
+          region: us-east-1
           cluster: "buildkite-ecs-oidc-example"
           service: "buildkite-ecs-oidc-example"
           task-family: "buildkite-ecs-oidc-example"
