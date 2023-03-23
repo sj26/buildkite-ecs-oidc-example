@@ -1,0 +1,8 @@
+{
+    "family": "buildkite-ecs-oidc-example",
+    "executionRoleArn": "arn:aws:iam::253213882263:role/ecsTaskExecutionRole",
+    "requiresCompatibilities": ["FARGATE"],
+    "networkMode": "awsvpc",
+    "cpu": "256",
+    "memory": "512"
+}

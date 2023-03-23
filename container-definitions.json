@@ -1,0 +1,30 @@
+[
+    {
+        "name": "buildkite-ecs-oidc-example",
+        "image": "253213882263.dkr.ecr.us-east-1.amazonaws.com/buildkite-ecs-oidc-example",
+        "cpu": 0,
+        "portMappings": [
+            {
+                "name": "buildkite-ecs-oidc-example-80-tcp",
+                "containerPort": 80,
+                "hostPort": 80,
+                "protocol": "tcp",
+                "appProtocol": "http"
+            }
+        ],
+        "essential": true,
+        "environment": [],
+        "environmentFiles": [],
+        "mountPoints": [],
+        "volumesFrom": [],
+        "logConfiguration": {
+            "logDriver": "awslogs",
+            "options": {
+                "awslogs-create-group": "true",
+                "awslogs-group": "/ecs/buildkite-ecs-oidc-example",
+                "awslogs-region": "us-east-1",
+                "awslogs-stream-prefix": "ecs"
+            }
+        }
+    }
+]

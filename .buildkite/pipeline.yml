@@ -15,3 +15,19 @@ steps:
           account_ids: "${AWS_ACCOUNT_ID}"
           region: "${AWS_REGION}"
 
+  - wait
+
+  - label: ":ecs: :rocket:"
+    branches: main
+    agents: queue=deploy
+    plugins:
+      - aws-assume-role-with-web-identity:
+          role-arn: arn:aws:iam::253213882263:role/deploy-ecs
+
+      - ecs-deploy:
+          cluster: "buildkite-ecs-oidc-example"
+          service: "buildkite-ecs-oidc-example"
+          task-family: "buildkite-ecs-oidc-example"
+          container-definitions: "container-definitions.json"
+          task-definition: "task-definition.json"
+          image: "${CONTAINER_TAG}"
